@@ -26,129 +26,130 @@
   </head>
   <body>
     <div class="container">
-      <div class="whole-app">
-        <div class="row">
-          <div class="col-6">
-            <form id="search-form">
-              <input
-                type="text"
-                placeholder="Enter your city"
-                class="enter-city"
-                id="input-city"
-                autocomplete="off"
-              />
-            </form>
-          </div>
-          <div class="col-3">
-            <input type="submit" value="Search" class="search-city" />
-          </div>
-          <div class="col-3">
-            <button class="current-location" id="my-location-button">
-              My location
-            </button>
-          </div>
-          <div class="row actual">
-            <div class="col-5">
-              <h1 class="act-loc" id="searched-city">Ljubljana</h1>
-              <h2 class="act-date-time" id="date-and-time">Sunday, 11:00</h2>
-              <p class="act-weather" id="current-description">Sunny</p>
-            </div>
-            <div class="col-4">
-              <span class="act-temp" id="temperature">3</span>
-              <span class="act-temp-units"
-                ><a href="#" class="act-temp-cel" id="celsius-link">°C</a>/<a
-                  href="#"
-                  class="act-temp-fahr"
-                  id="fahrenheit-link"
-                  >°F</a
-                ></span
-              >
+      <div class="weather-app-wrapper">
+        <div class="whole-app">
+          <div class="row">
+            <div class="col-6">
+              <form id="search-form">
+                <input
+                  type="text"
+                  placeholder="Enter your city"
+                  class="enter-city"
+                  id="input-city"
+                  autocomplete="off"
+                />
+              </form>
             </div>
             <div class="col-3">
-              <i class="fa-solid fa-sun act-weather-icon"></i>
+              <input type="submit" value="Search" class="search-city" />
             </div>
-            <div class="row">
-              <div class="col-3">
-                <i class="fa-solid fa-droplet"></i>
-                <p class="act-humid" id="current-humidity">Humidity: 1 %</p>
+            <div class="col-3">
+              <button class="current-location" id="my-location-button">
+                My location
+              </button>
+            </div>
+            <div class="row actual">
+              <div class="col-5">
+                <h1 class="act-loc" id="searched-city">Ljubljana</h1>
+                <h2 class="act-date-time" id="date-and-time">Sunday, 11:00</h2>
+                <p class="act-weather" id="current-description">Sunny</p>
+              </div>
+              <div class="col-4">
+                <span class="act-temp" id="temperature">3</span>
+                <span class="act-temp-units"
+                  ><a href="#" class="act-temp-cel" id="celsius-link">°C</a>/<a
+                    href="#"
+                    class="act-temp-fahr"
+                    id="fahrenheit-link"
+                    >°F</a
+                  ></span
+                >
               </div>
               <div class="col-3">
-                <i class="fa-solid fa-wind"></i>
-                <p class="act-wind" id="current-wind">Wind: 3 km/h</p>
+                <i class="fa-solid fa-sun act-weather-icon"></i>
               </div>
-              <div class="col-6">
-                <p class="weather-comment">
-                  Weather today is perfect for a trip! 😎
-                </p>
+              <div class="row">
+                <div class="col-3">
+                  <i class="fa-solid fa-droplet"></i>
+                  <p class="act-humid" id="current-humidity">Humidity: 1 %</p>
+                </div>
+                <div class="col-3">
+                  <i class="fa-solid fa-wind"></i>
+                  <p class="act-wind" id="current-wind">Wind: 3 km/h</p>
+                </div>
+                <div class="col-6">
+                  <p class="weather-comment">
+                    Weather today is perfect for a trip! 😎
+                  </p>
+                </div>
               </div>
             </div>
+            <section class="forecast">
+              <div class="row day-one">
+                <div class="col-4">
+                  <p class="forecast-text">Monday</p>
+                </div>
+                <div class="col-4">
+                  <i class="fa-solid fa-cloud-rain"></i>
+                </div>
+                <div class="col-4">
+                  <p class="forecast-text">8 °C</p>
+                </div>
+              </div>
+              <div class="row day-two">
+                <div class="col-4">
+                  <p class="forecast-text">Tuesday</p>
+                </div>
+                <div class="col-4">
+                  <i class="fa-solid fa-cloud-rain"></i>
+                </div>
+                <div class="col-4">
+                  <p class="forecast-text">7 °C</p>
+                </div>
+              </div>
+              <div class="row day-three">
+                <div class="col-4">
+                  <p class="forecast-text">Wednesday</p>
+                </div>
+                <div class="col-4">
+                  <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="col-4">
+                  <p class="forecast-text">11 °C</p>
+                </div>
+              </div>
+              <div class="row day-four">
+                <div class="col-4">
+                  <p class="forecast-text">Thursday</p>
+                </div>
+                <div class="col-4">
+                  <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <div class="col-4">
+                  <p class="forecast-text">12 °C</p>
+                </div>
+              </div>
+              <div class="row day-five">
+                <div class="col-4">
+                  <p class="forecast-text">Friday</p>
+                </div>
+                <div class="col-4">
+                  <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+                <div class="col-4">
+                  <p class="forecast-text">14 °C</p>
+                </div>
+              </div>
+            </section>
           </div>
-          <section class="forecast">
-            <div class="row day-one">
-              <div class="col-4">
-                <p class="forecast-text">Monday</p>
-              </div>
-              <div class="col-4">
-                <i class="fa-solid fa-cloud-rain"></i>
-              </div>
-              <div class="col-4">
-                <p class="forecast-text">8 °C</p>
-              </div>
-            </div>
-            <div class="row day-two">
-              <div class="col-4">
-                <p class="forecast-text">Tuesday</p>
-              </div>
-              <div class="col-4">
-                <i class="fa-solid fa-cloud-rain"></i>
-              </div>
-              <div class="col-4">
-                <p class="forecast-text">7 °C</p>
-              </div>
-            </div>
-            <div class="row day-three">
-              <div class="col-4">
-                <p class="forecast-text">Wednesday</p>
-              </div>
-              <div class="col-4">
-                <i class="fa-solid fa-cloud"></i>
-              </div>
-              <div class="col-4">
-                <p class="forecast-text">11 °C</p>
-              </div>
-            </div>
-            <div class="row day-four">
-              <div class="col-4">
-                <p class="forecast-text">Thursday</p>
-              </div>
-              <div class="col-4">
-                <i class="fa-solid fa-cloud-sun"></i>
-              </div>
-              <div class="col-4">
-                <p class="forecast-text">12 °C</p>
-              </div>
-            </div>
-            <div class="row day-five">
-              <div class="col-4">
-                <p class="forecast-text">Friday</p>
-              </div>
-              <div class="col-4">
-                <i class="fa-solid fa-cloud-sun"></i>
-              </div>
-              <div class="col-4">
-                <p class="forecast-text">14 °C</p>
-              </div>
-            </div>
-          </section>
-          <span
-            ><a
-              href="https://github.com/DGabersek/Weather-app"
-              class="open-source-link"
-              >Open-source code</a
-            ></span
-          >
-          <span class="coder">by Daša Gaberšek</span>
         </div>
+        <span
+          ><a
+            href="https://github.com/DGabersek/Weather-app"
+            class="open-source-link"
+            >Open-source code</a
+          ></span
+        ><span class="coder"> by Daša Gaberšek</span>
       </div>
     </div>
     <script src="src/index.js"></script>

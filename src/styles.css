@@ -10,7 +10,7 @@
   font-family: "Manjari", sans-serif;
   margin: 30px auto;
   max-width: 650px;
-  padding: 30px 30px 10px 30px;
+  padding: 30px;
 }
 
 .enter-city {
@@ -209,15 +209,20 @@
   padding: 10px;
 }
 
+.weather-app-wrapper {
+  margin: 30px auto;
+  max-width: 650px;
+}
+
 .open-source-link {
-  color: #c7d5ce;
+  color: #21593c;
   transition: all 150ms ease-in-out;
 }
 
 .open-source-link:hover {
-  color: #21593c;
+  color: #5d8670;
 }
 
 .coder {
-  color: #c7d5ce;
+  color: #21593c;
 }
