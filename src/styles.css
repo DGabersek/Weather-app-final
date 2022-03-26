@@ -9,6 +9,7 @@
   display: block;
   font-family: "Manjari", sans-serif;
   margin: 30px auto;
+  margin-bottom: 0;
   max-width: 650px;
   padding: 30px;
 }
