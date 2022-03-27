@@ -34,6 +34,37 @@ function searchCity(city) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showCurrentWeather);
 }
 
+//Current weather description icon
+function showCurrentWeatherIcon(response) {
+  let currentWeatherDescriptionIcon = response.data.weather[0].icon;
+  let currentWeatherIcon = document.querySelector("#current-weather-icon");
+  if (currentWeatherDescriptionIcon === "clear sky");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-sun"></i>;
+  if (currentWeatherDescriptionIcon === "few clouds");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-sun"></i>;
+  if (currentWeatherDescriptionIcon === "scattered clouds" && "broken clouds");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud"></i>;
+  if (currentWeatherDescriptionIcon === "shower rain");
+  currentWeatherIcon.innerHTML = (
+    <i class="fa-solid fa-cloud-showers-heavy"></i>
+  );
+  if (currentWeatherDescriptionIcon === "rain");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-sun-rain"></i>;
+  if (currentWeatherDescriptionIcon === "thunderstorm");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-bolt"></i>;
+  if (currentWeatherDescriptionIcon === "snow");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-snowflake"></i>;
+  if (currentWeatherDescriptionIcon === "mist");
+  currentWeatherIcon.innerHTML = <i class="fa-solid fa-bars-staggered"></i>;
+
+  let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
+  let currentWeatherIconUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentWeatherDescriptionIcon}&appid=${apiKey}`;
+
+  axios
+    .get(`${currentWeatherIconUrl}&appid=${apiKey}`)
+    .then(showCurrentWeatherIcon);
+}
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", enterCity);
 
@@ -66,37 +97,6 @@ function showMyLocationWeather(event) {
 
 let myLocationButton = document.querySelector("#my-location-button");
 myLocationButton.addEventListener("click", showMyLocationWeather);
-
-//Current weather description icon
-function showCurrentWeatherIcon(response) {
-  let currentWeatherDescriptionIcon = response.data.weather[0].icon;
-  let currentWeatherIcon = document.querySelector("#current-weather-icon");
-  if (currentWeatherDescriptionIcon === "clear sky");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-sun"></i>;
-  if (currentWeatherDescriptionIcon === "few clouds");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-sun"></i>;
-  if (currentWeatherDescriptionIcon === "scattered clouds" && "broken clouds");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud"></i>;
-  if (currentWeatherDescriptionIcon === "shower rain");
-  currentWeatherIcon.innerHTML = (
-    <i class="fa-solid fa-cloud-showers-heavy"></i>
-  );
-  if (currentWeatherDescriptionIcon === "rain");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-sun-rain"></i>;
-  if (currentWeatherDescriptionIcon === "thunderstorm");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-bolt"></i>;
-  if (currentWeatherDescriptionIcon === "snow");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-snowflake"></i>;
-  if (currentWeatherDescriptionIcon === "mist");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-bars-staggered"></i>;
-}
-
-let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
-let currentWeatherIconUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentWeatherDescriptionIcon}&appid=${apiKey}`;
-
-axios
-  .get(`${currentWeatherIconUrl}&appid=${apiKey}`)
-  .then(showCurrentWeatherIcon);
 
 //Date and hour
 let now = new Date();
