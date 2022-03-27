@@ -26,8 +26,6 @@ function showCurrentWeather(response) {
 function enterCity(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#input-city");
-  searchInput = searchInput.toLowerCase();
-  searchInput = searchInput.trim();
   let h1 = document.querySelector("h1");
   h1.innerHTML = searchInput.value;
 
