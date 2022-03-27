@@ -69,7 +69,6 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     .get(`${currentWeatherIconUrl}&appid=${apiKey}`)
     .then(showCurrentWeatherIcon);
 }
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", enterCity);
 
