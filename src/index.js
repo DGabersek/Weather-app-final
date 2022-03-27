@@ -19,6 +19,8 @@ function showCurrentWeather(response) {
   windElement.innerHTML = `Wind: ${windSpeed} km/h`;
 
   showCurrentWeatherIcon(weatherDescription);
+
+  celsiusTemperature = response.data.main.temp;
 }
 
 function enterCity(event) {
@@ -124,9 +126,12 @@ h2.innerHTML = `${day}, ${hour}:${minutes}`;
 //Temperature unit change
 function showFahrenheit(event) {
   event.preventDefault();
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
   let changeTempFahr = document.querySelector("#temperature");
-  changeTempFahr.innerHTML = "37";
+  changeTempFahr.innerHTML = Math.round(fahrenheitTemp);
 }
+
+let celsiusTemperature = null;
 
 let tempFahr = document.querySelector("#fahrenheit-link");
 tempFahr.addEventListener("click", showFahrenheit);
@@ -134,7 +139,7 @@ tempFahr.addEventListener("click", showFahrenheit);
 function showCelsius(event) {
   event.preventDefault();
   let changeTempCel = document.querySelector("#temperature");
-  changeTempCel.innerHTML = "3";
+  changeTempCel.innerHTML = Math.round(celsiusTemperature);
 }
 
 let tempCel = document.querySelector("#celsius-link");
