@@ -1,7 +1,7 @@
 //Search Engine
 
 function showCurrentWeather(response) {
-  //console.log(response.data);
+  console.log(response.data);
   let currentTemp = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = currentTemp;
@@ -17,6 +17,13 @@ function showCurrentWeather(response) {
   let windSpeed = Math.round(response.data.wind.speed);
   let windElement = document.querySelector("#current-wind");
   windElement.innerHTML = `Wind: ${windSpeed} km/h`;
+
+  let icon = response.data.weather[0].icon;
+  let iconElement = document.querySelector("current-icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${icon}@2x.png`
+  );
 }
 
 function enterCity(event) {
