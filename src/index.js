@@ -26,6 +26,8 @@ function showCurrentWeather(response) {
 function enterCity(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#input-city");
+  searchInput = searchInput.toLowerCase();
+  searchInput = searchInput.trim();
   let h1 = document.querySelector("h1");
   h1.innerHTML = searchInput.value;
 
@@ -132,7 +134,7 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
   ) {
     currentQuote.innerHTML = "Don't forget your umbrella! 🌂";
   } else if (currentWeatherDescriptionIcon === "snow") {
-    currentQuote.innerHTML = "Time for a cup of tee and a good book! 📖";
+    currentQuote.innerHTML = "Time for a cup of tea and a good book! 📖";
   } else {
     currentQuote.innerHTML = "Have an excellent day! 🤗";
   }
