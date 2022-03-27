@@ -38,7 +38,7 @@ function searchCity(city) {
   axios.get(`${apiUrl}&appid=${apiKey}`).then(showCurrentWeather);
 }
 
-//Current weather description icon
+//Current weather description icon and quote
 function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
   console.log(currentWeatherDescriptionIcon);
   let currentWeatherIcon = document.querySelector("#current-weather-icon");
@@ -118,6 +118,23 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     currentWeatherDescriptionIcon === "tornado"
   ) {
     currentWeatherIcon.innerHTML = `<i class="fa-solid fa-bars-staggered"></i>`;
+  }
+
+  let currentQuote = document.querySelector("#weather-quote");
+  if (
+    currentWeatherDescriptionIcon === "clear sky" ||
+    currentWeatherDescriptionIcon === "few clouds"
+  ) {
+    currentQuote.innerHTML = "Weather today is perfect for a trip! 😎";
+  } else if (
+    currentWeatherDescriptionIcon === "rain" ||
+    currentWeatherDescriptionIcon === "shower rain"
+  ) {
+    currentQuote.innerHTML = "Don't forget your umbrella! 🌂";
+  } else if (currentWeatherDescriptionIcon === "snow") {
+    currentQuote.innerHTML = "Time for a cup of tee and a good book! 📖";
+  } else {
+    currentQuote.innerHTML = "Have an excellent day! 🤗";
   }
 }
 let form = document.querySelector("#search-form");
