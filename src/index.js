@@ -61,13 +61,6 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
   if (currentWeatherDescriptionIcon === "mist") {
     currentWeatherIcon.innerHTML = `<i class="fa-solid fa-bars-staggered"></i>`;
   }
-
-  let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
-  let currentWeatherIconUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentWeatherDescriptionIcon}&appid=${apiKey}`;
-
-  axios
-    .get(`${currentWeatherIconUrl}&appid=${apiKey}`)
-    .then(showCurrentWeatherIcon);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", enterCity);
