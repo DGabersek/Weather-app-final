@@ -17,6 +17,8 @@ function showCurrentWeather(response) {
   let windSpeed = Math.round(response.data.wind.speed);
   let windElement = document.querySelector("#current-wind");
   windElement.innerHTML = `Wind: ${windSpeed} km/h`;
+
+  showCurrentWeatherIcon(weatherDescription);
 }
 
 function enterCity(event) {
@@ -35,27 +37,30 @@ function searchCity(city) {
 }
 
 //Current weather description icon
-function showCurrentWeatherIcon(response) {
-  let currentWeatherDescriptionIcon = response.data.weather[0].icon;
+function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
+  console.log(currentWeatherDescriptionIcon);
   let currentWeatherIcon = document.querySelector("#current-weather-icon");
-  if (currentWeatherDescriptionIcon === "clear sky");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-sun"></i>;
-  if (currentWeatherDescriptionIcon === "few clouds");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-sun"></i>;
-  if (currentWeatherDescriptionIcon === "scattered clouds" && "broken clouds");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud"></i>;
-  if (currentWeatherDescriptionIcon === "shower rain");
-  currentWeatherIcon.innerHTML = (
-    <i class="fa-solid fa-cloud-showers-heavy"></i>
-  );
-  if (currentWeatherDescriptionIcon === "rain");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-sun-rain"></i>;
-  if (currentWeatherDescriptionIcon === "thunderstorm");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-cloud-bolt"></i>;
-  if (currentWeatherDescriptionIcon === "snow");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-snowflake"></i>;
-  if (currentWeatherDescriptionIcon === "mist");
-  currentWeatherIcon.innerHTML = <i class="fa-solid fa-bars-staggered"></i>;
+  if (currentWeatherDescriptionIcon === "clear sky") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+  } else if (currentWeatherDescriptionIcon === "few clouds") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-sun"></i>`;
+  } else if (
+    currentWeatherDescriptionIcon === "scattered clouds" ||
+    currentWeatherDescriptionIcon === "broken clouds"
+  ) {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
+  } else if (currentWeatherDescriptionIcon === "shower rain") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+  } else if (currentWeatherDescriptionIcon === "rain") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-sun-rain"></i>`;
+  } else if (currentWeatherDescriptionIcon === "thunderstorm") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-bolt"></i>`;
+  } else if (currentWeatherDescriptionIcon === "snow") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-snowflake"></i>`;
+  }
+  if (currentWeatherDescriptionIcon === "mist") {
+    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-bars-staggered"></i>`;
+  }
 
   let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
   let currentWeatherIconUrl = `https://api.openweathermap.org/data/2.5/weather?q=${currentWeatherDescriptionIcon}&appid=${apiKey}`;
