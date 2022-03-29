@@ -145,7 +145,7 @@
 
 .forecast {
   color: #21593c;
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
 }
 
@@ -157,8 +157,31 @@
   padding: 10px;
 }
 
-.forecast-text {
+.day-one-icon {
+  font-size: 25px;
+  position: relative;
+  top: 6px;
+}
+
+.day-two-icon {
+  font-size: 25px;
+  position: relative;
+  top: 6px;
+}
+
+.forecast-text-min {
+  color: #5d8670;
+  font-weight: bold;
   margin: 5px auto;
+  position: relative;
+  top: 5px;
+}
+
+.forecast-text {
+  font-weight: bold;
+  margin: 5px auto;
+  position: relative;
+  top: 5px;
 }
 
 .fa-droplet {
@@ -211,6 +234,7 @@
 }
 
 .weather-app-wrapper {
+  font-family: "Manjari", sans-serif;
   margin: 30px auto;
   max-width: 650px;
 }
