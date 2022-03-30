@@ -217,3 +217,32 @@ function showCelsius(event) {
 
 let tempCel = document.querySelector("#celsius-link");
 tempCel.addEventListener("click", showCelsius);
+
+//Forecast
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = "";
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-4">
+                <p class="forecast-text">${day}</p>
+              </div>
+              <div class="col-4 day-one-icon">
+                <i class="fa-solid fa-cloud-rain"></i>
+              </div>
+              <div class="col-2">
+                <span class="forecast-text-min">2° </span>
+              </div>
+              <div class="col-2">
+                <span class="forecast-text">8°</span>
+              </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
