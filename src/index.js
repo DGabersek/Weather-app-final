@@ -1,5 +1,5 @@
 function displayForecast(response) {
-  console.log(response.data.daily);
+  console.log(response);
   let forecastElement = document.querySelector("#weather-forecast");
 
   let forecastHTML = "";
@@ -20,6 +20,7 @@ function displayForecast(response) {
         <div class="col-2">
           <span class="forecast-text">8°</span>
         </div>
+      
       `;
   });
 
@@ -54,6 +55,7 @@ function showCurrentWeather(response) {
   showCurrentWeatherIcon(weatherDescription);
 
   celsiusTemperature = response.data.main.temp;
+  displayForecast();
 }
 
 function searchCity(city) {
@@ -250,7 +252,3 @@ tempFahr.addEventListener("click", showFahrenheit);
 
 let tempCel = document.querySelector("#celsius-link");
 tempCel.addEventListener("click", showCelsius);
-
-//Forecast
-
-displayForecast();
