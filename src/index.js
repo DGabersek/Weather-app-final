@@ -1,4 +1,37 @@
-//Search Engine
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#weather-forecast");
+
+  let forecastHTML = "";
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col-4">
+          <p class="forecast-text">${day}</p>
+        </div>
+        <div class="col-4 day-one-icon">
+          <i class="fa-solid fa-cloud-rain"></i>
+        </div>
+        <div class="col-2">
+          <span class="forecast-text-min">2° </span>
+        </div>
+        <div class="col-2">
+          <span class="forecast-text">8°</span>
+        </div>
+      `;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function showCurrentWeather(response) {
   console.log(response.data);
@@ -23,6 +56,12 @@ function showCurrentWeather(response) {
   celsiusTemperature = response.data.main.temp;
 }
 
+function searchCity(city) {
+  let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(showCurrentWeather);
+}
+
 function enterCity(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#input-city");
@@ -32,13 +71,19 @@ function enterCity(event) {
   searchCity(searchInput.value);
 }
 
-function searchCity(city) {
-  let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(`${apiUrl}&appid=${apiKey}`).then(showCurrentWeather);
+function showFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+  let changeTempFahr = document.querySelector("#temperature");
+  changeTempFahr.innerHTML = Math.round(fahrenheitTemp);
 }
 
-//Current weather description icon and quote
+function showCelsius(event) {
+  event.preventDefault();
+  let changeTempCel = document.querySelector("#temperature");
+  changeTempCel.innerHTML = Math.round(celsiusTemperature);
+}
+
 function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
   console.log(currentWeatherDescriptionIcon);
   let currentWeatherIcon = document.querySelector("#current-weather-icon");
@@ -197,52 +242,15 @@ if (minutes < 10) {
 h2.innerHTML = `${day}, ${hour}:${minutes}`;
 
 //Temperature unit change
-function showFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  let changeTempFahr = document.querySelector("#temperature");
-  changeTempFahr.innerHTML = Math.round(fahrenheitTemp);
-}
 
 let celsiusTemperature = null;
 
 let tempFahr = document.querySelector("#fahrenheit-link");
 tempFahr.addEventListener("click", showFahrenheit);
 
-function showCelsius(event) {
-  event.preventDefault();
-  let changeTempCel = document.querySelector("#temperature");
-  changeTempCel.innerHTML = Math.round(celsiusTemperature);
-}
-
 let tempCel = document.querySelector("#celsius-link");
 tempCel.addEventListener("click", showCelsius);
 
 //Forecast
-
-function displayForecast() {
-  let forecastElement = document.querySelector("#weather-forecast");
-
-  let forecastHTML = "";
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-4">
-                <p class="forecast-text">${day}</p>
-              </div>
-              <div class="col-4 day-one-icon">
-                <i class="fa-solid fa-cloud-rain"></i>
-              </div>
-              <div class="col-2">
-                <span class="forecast-text-min">2° </span>
-              </div>
-              <div class="col-2">
-                <span class="forecast-text">8°</span>
-              </div>`;
-  });
-
-  forecastElement.innerHTML = forecastHTML;
-}
 
 displayForecast();
