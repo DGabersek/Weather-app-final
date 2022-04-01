@@ -8,6 +8,7 @@ function displayForecast(response) {
     forecastHTML =
       forecastHTML +
       `
+      <div class="row mb-2 day-one">
         <div class="col-4">
           <p class="forecast-text">${day}</p>
         </div>
@@ -19,6 +20,7 @@ function displayForecast(response) {
         </div>
         <div class="col-2">
           <span class="forecast-text">8°</span>
+        </div>
         </div>
       
       `;
