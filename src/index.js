@@ -1,5 +1,5 @@
 function displayForecast(response) {
-  console.log(response);
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#weather-forecast");
 
   let forecastHTML = "";
@@ -57,7 +57,7 @@ function showCurrentWeather(response) {
   showCurrentWeatherIcon(weatherDescription);
 
   celsiusTemperature = response.data.main.temp;
-  displayForecast();
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -201,7 +201,7 @@ function findPosition(position) {
 
 function showMyLocation(response) {
   let cityName = response.data.name;
-  //console.log(cityName);
+  console.log(cityName);
   let h1 = document.querySelector("#searched-city");
   h1.innerHTML = cityName;
 
@@ -254,3 +254,5 @@ tempFahr.addEventListener("click", showFahrenheit);
 
 let tempCel = document.querySelector("#celsius-link");
 tempCel.addEventListener("click", showCelsius);
+
+searchCity("Ljubljana");
