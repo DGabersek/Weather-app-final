@@ -19,7 +19,6 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#weather-forecast");
 
   let forecastHTML = "";
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
       forecastHTML =
@@ -30,16 +29,16 @@ function displayForecast(response) {
           <p class="forecast-text">${formatDay(forecastDay.dt)}</p>
         </div>
         <div class="col-4 day-one-icon">
-          ${forecastDay.weather[0].description}
+          ${showCurrentWeatherIcon(forecastDay.weather[0].description)}
         </div>
         <div class="col-2">
           <span class="forecast-text-min">${Math.round(
-            forecastDay.temp.max
+            forecastDay.temp.min
           )}° </span>
         </div>
         <div class="col-2">
           <span class="forecast-text">${Math.round(
-            forecastDay.temp.min
+            forecastDay.temp.max
           )}°</span>
         </div>
         </div>
@@ -52,14 +51,12 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
 function showCurrentWeather(response) {
-  console.log(response.data);
   let currentTemp = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = currentTemp;
@@ -76,7 +73,11 @@ function showCurrentWeather(response) {
   let windElement = document.querySelector("#current-wind");
   windElement.innerHTML = `Wind: ${windSpeed} km/h`;
 
-  showCurrentWeatherIcon(weatherDescription);
+  let currentWeatherIcon = document.querySelector("#current-weather-icon");
+  currentWeatherIcon.innerHTML = showCurrentWeatherIcon(weatherDescription);
+
+  let currentQuote = document.querySelector("#weather-quote");
+  currentQuote.innerHTML = showCurrentQuote(weatherDescription);
 
   celsiusTemperature = response.data.main.temp;
   getForecast(response.data.coord);
@@ -111,18 +112,17 @@ function showCelsius(event) {
 }
 
 function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
-  console.log(currentWeatherDescriptionIcon);
-  let currentWeatherIcon = document.querySelector("#current-weather-icon");
+  let currentWeatherIcon = "";
   if (currentWeatherDescriptionIcon === "clear sky") {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-sun"></i>`;
   } else if (currentWeatherDescriptionIcon === "few clouds") {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-sun"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-cloud-sun"></i>`;
   } else if (
     currentWeatherDescriptionIcon === "scattered clouds" ||
     currentWeatherDescriptionIcon === "broken clouds" ||
     currentWeatherDescriptionIcon === "overcast clouds"
   ) {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-cloud"></i>`;
   } else if (
     currentWeatherDescriptionIcon === "shower rain" ||
     currentWeatherDescriptionIcon === "light intensity drizzle" ||
@@ -138,7 +138,7 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     currentWeatherDescriptionIcon === "heavy intensity shower rain" ||
     currentWeatherDescriptionIcon === "ragged shower rain"
   ) {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
   } else if (
     currentWeatherDescriptionIcon === "rain" ||
     currentWeatherDescriptionIcon === "light rain" ||
@@ -146,7 +146,7 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     currentWeatherDescriptionIcon === "heavy intensity rain" ||
     currentWeatherDescriptionIcon === "extreme rain"
   ) {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-sun-rain"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-cloud-sun-rain"></i>`;
   } else if (
     currentWeatherDescriptionIcon === "thunderstorm" ||
     currentWeatherDescriptionIcon === "thunderstorm with light rain" ||
@@ -159,7 +159,7 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     currentWeatherDescriptionIcon === "thunderstorm with drizzle" ||
     currentWeatherDescriptionIcon === "thunderstorm with heavy drizzle"
   ) {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-cloud-bolt"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-cloud-bolt"></i>`;
   } else if (
     currentWeatherDescriptionIcon === "snow" ||
     currentWeatherDescriptionIcon === "freezing rain" ||
@@ -174,7 +174,7 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     currentWeatherDescriptionIcon === "shower snow" ||
     currentWeatherDescriptionIcon === "heavy shower snow"
   ) {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-snowflake"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-snowflake"></i>`;
   }
   if (
     currentWeatherDescriptionIcon === "mist" ||
@@ -188,30 +188,33 @@ function showCurrentWeatherIcon(currentWeatherDescriptionIcon) {
     currentWeatherDescriptionIcon === "squalls" ||
     currentWeatherDescriptionIcon === "tornado"
   ) {
-    currentWeatherIcon.innerHTML = `<i class="fa-solid fa-bars-staggered"></i>`;
+    currentWeatherIcon = `<i class="fa-solid fa-bars-staggered"></i>`;
   }
 
-  let currentQuote = document.querySelector("#weather-quote");
+  return currentWeatherIcon;
+}
+
+function showCurrentQuote(currentWeatherDescriptionIcon) {
+  let currentQuote = "";
   if (
     currentWeatherDescriptionIcon === "clear sky" ||
     currentWeatherDescriptionIcon === "few clouds"
   ) {
-    currentQuote.innerHTML = "Weather today is perfect for a trip! 😎";
+    currentQuote = "Weather today is perfect for a trip! 😎";
   } else if (
     currentWeatherDescriptionIcon === "rain" ||
     currentWeatherDescriptionIcon === "shower rain"
   ) {
-    currentQuote.innerHTML = "Don't forget your umbrella! 🌂";
+    currentQuote = "Don't forget your umbrella! 🌂";
   } else if (currentWeatherDescriptionIcon === "snow") {
-    currentQuote.innerHTML = "Time for a cup of tea and a good book! 📖";
+    currentQuote = "Time for a cup of tea and a good book! 📖";
   } else {
-    currentQuote.innerHTML = "Have an excellent day! 🤗";
+    currentQuote = "Have an excellent day! 🤗";
   }
-}
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", enterCity);
 
-//Current Location button
+  return currentQuote;
+}
+
 function findPosition(position) {
   let apiKey = "b40c21ef5c00549b637618fc8306ed3b";
   let latitude = position.coords.latitude;
@@ -223,7 +226,6 @@ function findPosition(position) {
 
 function showMyLocation(response) {
   let cityName = response.data.name;
-  console.log(cityName);
   let h1 = document.querySelector("#searched-city");
   h1.innerHTML = cityName;
 
@@ -238,10 +240,12 @@ function showMyLocationWeather(event) {
   navigator.geolocation.getCurrentPosition(findPosition);
 }
 
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", enterCity);
+
 let myLocationButton = document.querySelector("#my-location-button");
 myLocationButton.addEventListener("click", showMyLocationWeather);
 
-//Date and hour
 let now = new Date();
 
 let h2 = document.querySelector("h2");
@@ -266,8 +270,6 @@ if (minutes < 10) {
 }
 
 h2.innerHTML = `${day}, ${hour}:${minutes}`;
-
-//Temperature unit change
 
 let celsiusTemperature = null;
 
